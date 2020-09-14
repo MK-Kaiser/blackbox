@@ -1,7 +1,7 @@
 # blackbox
 
     What is blackbox?
-    A game called BlackBox played on a 10x10 grid where the guessing player will start with 25 points
+    A game played on a 10x10 grid where the guessing player will start with 25 points
     during each turn, the player will shoot rays into the black box. 5 points are lost for incorrect guesses, and 1 point
     is lost for each new entry/exit point. Behavior of the ray serves as an indicator of where the player should guess.
     The goal is to correctly guess where each atom position is.
