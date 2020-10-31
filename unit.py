@@ -17,7 +17,7 @@ class Tie(unittest.TestCase):
         self.assertEqual(game.shoot_ray(9,4), (8,9)) # up to right deflection
         self.assertEqual(game.shoot_ray(0,4), (6,9)) # down to right deflection
         self.assertEqual(game.shoot_ray(9,5), (4,0)) # up to left deflection
-        #game.print_board()
+        game.print_board()
         #print(game.get_score())
 
     def test_double_deflections(self):
