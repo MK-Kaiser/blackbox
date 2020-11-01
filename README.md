@@ -13,7 +13,7 @@
 
 
 
-![image](https://raw.githubusercontent.com/MK-Kaiser/portfolio/master/images/BlackBox.png)
+![image](https://raw.githubusercontent.com/MK-Kaiser/portfolio/master/images/blackbox.png)
     
     
     Play via commandline
