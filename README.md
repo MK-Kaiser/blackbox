@@ -7,6 +7,12 @@
     Behavior of the ray serves as an indicator of where the player should guess.
     The goal is to correctly guess where each atom position is.
     
+    *New
+    Play via GUI
+    
+    
+    
+    Play via commandline
     Usage:
     use git clone or wget to pull BlackBoxGame.py
     from the commandline run with: python3 -i BlackBoxGame.py
