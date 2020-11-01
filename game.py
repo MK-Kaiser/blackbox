@@ -6,13 +6,14 @@ Todo:
 1. need to setup responses to guesses and shoot rays
 2. randomize atom starting positions
 4. setup print board in gui
-5. 
+5. split guess into 2 entry blocks
 """
 
 root = tk.Tk()
 game = BlackBoxGame([(8,8), (1,1), (1,8)])
 # setting the windows size
-root.geometry("1920x1080")
+root.geometry("800x600")
+root.title("BlackBox Game")
 
 # declaring string variable
 # for storing coordinates for guessing and shooting
@@ -94,7 +95,7 @@ shoot_col_entry = tk.Entry(root, textvariable=shoot_col_var, font=('calibre', 10
 # Button that will call the submit function
 score_btn = tk.Button(root, text='Get Current Score', command=getScore)
 shoot_btn = tk.Button(root, text='Shoot Ray', command=shootRay)
-submit_btn = tk.Button(root, text='Submit', command=guessAtom)
+submit_btn = tk.Button(root, text='Submit Guess', command=guessAtom)
 board_btn = tk.Button(root, text='Display Board', command=displayBoard)
 help_btn = tk.Button(root, text='Help', command=displayHelp)
 
