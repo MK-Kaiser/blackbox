@@ -7,8 +7,12 @@
     Behavior of the ray serves as an indicator of where the player should guess.
     The goal is to correctly guess where each atom position is.
     
-*New
-Play via GUI
+    *New
+    Play via GUI
+
+
+
+
 ![image](https://raw.githubusercontent.com/MK-Kaiser/portfolio/master/images/BlackBox.png)
     
     
