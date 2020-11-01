@@ -5,67 +5,113 @@ from BlackBoxGame import *
 Todo: 
 1. need to setup responses to guesses and shoot rays
 2. randomize atom starting positions
-3. add check score button
 4. setup print board in gui
 5. 
 """
 
 root = tk.Tk()
-game = BlackBoxGame([(7, 1), (7, 3), (3, 6), (1, 6)])
-game.print_board()
+game = BlackBoxGame([(8,8), (1,1), (1,8)])
 # setting the windows size
-root.geometry("1280x800")
+root.geometry("1920x1080")
 
 # declaring string variable
-# for storing name and password
-name_var = tk.StringVar()
+# for storing coordinates for guessing and shooting
+shoot_row_var = tk.StringVar()
+shoot_col_var = tk.StringVar()
 guess_var = tk.StringVar()
 
 
-# defining a function that will get the players' name
-def startGame():
-    name = name_entry.get()
-    #nameLabel = tk.Label(root, text = 'Player:'+name)
-    #nameLabel.grid(row=5, column=1)
-    #name_var.set("")
+# defining a function that will get the current score
+def getScore():
+    """
+    Todo: docstrings
+    """
+    score = game.get_score()
+    guessScoreLabel = tk.Label(root, text='Current Score:' + str(score))
+    guessScoreLabel.grid(row=10, column=1)
 
-def submit():
+def guessAtom():
+    """
+    Todo: docstrings
+    """
     guess = guess_var.get()
     guessLabel = tk.Label(root, text = 'guess:'+str(guess))
-    guessLabel.grid(row=6, column=1)
-    game.guess_atom(guess[0], guess[1])
-    game.print_board()
-    game.get_score()
+    guessLabel.grid(row=8, column=1)
+    guessAtomPosition = game.guess_atom(guess[0], guess[1])
+    guessAtomLabel = tk.Label(root, text = 'guess:'+str(guessAtomPosition))
+    guessAtomLabel.grid(row=9, column=1)
     guess_var.set("")
 
+def shootRay():
+    """
+    Todo: docstrings
+    """
+    shootRow = int(shoot_row_var.get())
+    shootCol = int(shoot_col_var.get())
+    ray = game.shoot_ray(shootRow, shootCol)
+    shootLabel = tk.Label(root, text = 'result:'+str(ray))
+    shootLabel.grid(row=3, column=1)
+    shoot_row_var.set("")
+    shoot_col_var.set("")
 
-# creating a label for name using widget Label
-name_label = tk.Label(root, text='Player', font=('calibre', 10, 'bold'))
+def displayBoard():
+    """
+    Todo: docstrings
+    """
+    board = game.print_board()
+    boardLabel = tk.Label(root, text=board)
+    boardLabel.grid(row=20, column=1)
 
-# creating a entry for input name using widget Entry
-name_entry = tk.Entry(root, textvariable=name_var, font = ('calibre', 10, 'normal'))
+def displayHelp():
+    """
+    Todo: docstrings
+    """
+    description = "To the play the game either enter (row, column) to guess an atom position or \n\
+                   enter an entry row and column to specify where to shoot a ray into the blackbox from.\n\
+                   For rules and additional information about blackbox visit:\n\
+                   https://en.wikipedia.org/wiki/Black_Box_(game)"
+    popup = tk.Tk()
+    popup.wm_title('Help')
+    helpLabel = tk.Label(popup, text=description)
+    helpLabel.grid(row=0, column=0)
+    popup.mainloop()
 
-# creating a label for guess
+
+# creating a label for guess and shoot
 guess_label = tk.Label(root, text='Guess', font=('calibre', 10, 'bold'))
+shoot_row_label = tk.Label(root, text='Row', font=('calibre', 10, 'bold')).grid(row=1, column=0)
+shoot_col_label = tk.Label(root, text='Column', font=('calibre', 10, 'bold')).grid(row=1, column=2)
 
-# creating a entry for password
+
+# creating a entry for guessing atom position and shooting a ray to enumerate location
 guess_entry = tk.Entry(root, textvariable=guess_var, font=('calibre', 10, 'normal'))
+shoot_row_entry = tk.Entry(root, textvariable=shoot_row_var, font=('calibre', 10, 'normal'))
+shoot_col_entry = tk.Entry(root, textvariable=shoot_col_var, font=('calibre', 10, 'normal'))
+
+
 
 # creating a button using the widget
 # Button that will call the submit function
-start_btn = tk.Button(root, text='Start Game', command=startGame)
+score_btn = tk.Button(root, text='Get Current Score', command=getScore)
+shoot_btn = tk.Button(root, text='Shoot Ray', command=shootRay)
+submit_btn = tk.Button(root, text='Submit', command=guessAtom)
+board_btn = tk.Button(root, text='Display Board', command=displayBoard)
+help_btn = tk.Button(root, text='Help', command=displayHelp)
 
-submit_btn = tk.Button(root, text='Submit', command=submit)
 
 
 # placing the label and entry in
 # the required position using grid
 # method
-name_label.grid(row=0, column=0)
-name_entry.grid(row=0, column=1)
-guess_entry.grid(row=3, column=1)
-start_btn.grid(row=2, column=1)
-submit_btn.grid(row=4, column=1)
+shoot_row_entry.grid(row=1, column=1)
+shoot_col_entry.grid(row=1, column=3)
+shoot_btn.grid(row=2, column=1)
+guess_entry.grid(row=5, column=1)
+submit_btn.grid(row=6, column=1)
+score_btn.grid(row=7, column=1)
+board_btn.grid(row=11, column=1)
+help_btn.grid(row=15, column=1)
+
 
 # performing an infinite loop
 # for the window to display
